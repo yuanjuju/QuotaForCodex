@@ -1,0 +1,111 @@
+name: QuotaForCodex
+
+options:
+  bundleIdPrefix: com.jinian
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    ARCHS: "$(ARCHS_STANDARD)"
+    CODE_SIGN_STYLE: Automatic
+    REGISTER_APP_GROUPS: YES
+    ENABLE_HARDENED_RUNTIME: YES
+    CURRENT_PROJECT_VERSION: 1
+    MARKETING_VERSION: 0.1.0
+    GENERATE_INFOPLIST_FILE: NO
+
+targets:
+  QuotaCore:
+    type: framework
+    platform: macOS
+    sources:
+      - Sources/QuotaCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.jinian.QuotaForCodex.Core
+        GENERATE_INFOPLIST_FILE: YES
+        SKIP_INSTALL: YES
+        DEFINES_MODULE: YES
+
+  QuotaForCodex:
+    type: application
+    platform: macOS
+    sources:
+      - Sources/QuotaApp
+      - Resources/Assets.xcassets
+    dependencies:
+      - target: QuotaCore
+      - target: QuotaWidget
+        embed: true
+    info:
+      path: Config/App-Info.plist
+      properties:
+        LSUIElement: true
+        LSApplicationCategoryType: public.app-category.utilities
+    entitlements:
+      path: Config/App.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.jinian.QuotaForCodex
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.jinian.QuotaForCodex
+        PRODUCT_NAME: "Quota for Codex"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.utilities
+
+  QuotaWidget:
+    type: app-extension
+    platform: macOS
+    sources:
+      - Sources/QuotaWidget
+    dependencies:
+      - target: QuotaCore
+      - sdk: WidgetKit.framework
+      - sdk: SwiftUI.framework
+      - sdk: Charts.framework
+    info:
+      path: Config/Widget-Info.plist
+      properties:
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: Config/Widget.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.application-groups:
+          - group.com.jinian.QuotaForCodex
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.jinian.QuotaForCodex.Widget
+        PRODUCT_NAME: "Quota for Codex Widget"
+        SKIP_INSTALL: YES
+
+  QuotaCoreTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - Tests/QuotaCoreTests
+    dependencies:
+      - target: QuotaCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.jinian.QuotaForCodex.Tests
+        GENERATE_INFOPLIST_FILE: YES
+
+schemes:
+  QuotaForCodex:
+    build:
+      targets:
+        QuotaForCodex: all
+        QuotaWidget: all
+        QuotaCore: all
+    test:
+      targets:
+        - QuotaCoreTests
+      gatherCoverageData: true
