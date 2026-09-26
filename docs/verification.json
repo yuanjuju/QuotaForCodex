@@ -1,0 +1,56 @@
+{
+  "date": "2026-09-26",
+  "source_commit": "68241c1b4b5adbffd77170065117c72911fc414b",
+  "environment": {
+    "macOS": "26.5",
+    "architecture": "arm64",
+    "swift": "Apple Swift version 6.3.3 (swiftlang-6.3.3.1.3 clang-2100.1.1.101)"
+  },
+  "checks": {
+    "swift_package_tests": {
+      "passed": 9,
+      "failed": 0,
+      "server": "isolated fake executable"
+    },
+    "offline_smoke": "passed: mapping, storage, JSON-RPC",
+    "xcode_debug_build": {
+      "result": "passed",
+      "targets": [
+        "QuotaForCodex",
+        "QuotaWidget"
+      ],
+      "code_signing_allowed": false
+    }
+  },
+  "scope_exclusions": [
+    "live-account compatibility",
+    "Widget UI interaction",
+    "Developer ID signing",
+    "notarization",
+    "Universal 2 archive"
+  ],
+  "source_sha256": {
+    "Package.swift": "e918b5e39dd9caa96a5055530b0fd21fcee18e9aa211c8b54a49e4ee07d9445a",
+    "Sources/QuotaApp/AppModel.swift": "30639636397f99ba3ff847beb9349f38d1c919e55922d32dd73854a920b4de8e",
+    "Sources/QuotaApp/MenuBarContentView.swift": "f817f77abd2a0ea4795aee43e232d4b9739006edbd4ad2a8e14ba1821414c030",
+    "Sources/QuotaApp/QuotaForCodexApp.swift": "6bcd97e017ae9eb80a73c5184f92afeee7d4767c70c2bfb5c352779b1ac9e8e7",
+    "Sources/QuotaApp/SettingsView.swift": "801d5c18ecd67719ffaf64e4ad4f78e5de5ac0e55a7cc362050af7829de24cd3",
+    "Sources/QuotaCore/CodexAppServerClient.swift": "a14cc4cb9b87c23a083b35ec51f6402f94adb69ae40f249cbd7ded179cd373df",
+    "Sources/QuotaCore/CodexExecutableLocator.swift": "b533f1790c4f7b43a8de3076aa0bfc44599ccee272dc4b4c17d5e8c23a672dae",
+    "Sources/QuotaCore/CodexProtocol.swift": "83ea9b36df9520b555a28ea05598d6ff7395a98b57da61753142835fafcc043c",
+    "Sources/QuotaCore/CodexQuotaService.swift": "a08236220994dedf819bfe5c072a403217b2334f039a43fe966205447423c524",
+    "Sources/QuotaCore/Models.swift": "bc4ed93c6c5591ea230f1325b34932273726fe604f43797137c652fddfe48fb3",
+    "Sources/QuotaCore/QuotaMapper.swift": "aeb9a8619441988d2aaee40d6c7d9c2895cdf02a5f5f4e8eb7d14fcf833489a2",
+    "Sources/QuotaCore/SnapshotStore.swift": "ad5a242042d885a2a443f584f22b09610037ebfdffa874452a01c907424ce8ad",
+    "Sources/QuotaProbe/QuotaProbe.swift": "33a4d67b64d326c5aec5341b53bba39c9c3bb24d7dbbf08c047b9e9d4644339c",
+    "Sources/QuotaSmoke/QuotaSmoke.swift": "a2e046b1655e64eb70cce25469b679eb193b53ff7bb3dd9528506648a895de2f",
+    "Sources/QuotaWidget/QuotaWidget.swift": "66e3cad33ea3d06c7ddbe068841b1ac6c5767e242a35d218dd2128d7d91d16b8",
+    "Sources/QuotaWidget/QuotaWidgetBundle.swift": "312c9cf4855c7611e0b73f1864c67c2d5bd515c538bbe24b9f0cfa3d0cbd0ba5",
+    "Sources/QuotaWidget/QuotaWidgetViews.swift": "febb089eee2ee241acea8a95032870f2e54da40a0f6d9c7cf8355e3a7c64d052",
+    "Tests/QuotaCoreTests/CodexAppServerClientTests.swift": "629b9e21516dbc72239025e609b6507bfc597b0e6495fec118d85206ef8f3c17",
+    "Tests/QuotaCoreTests/DailyUsageTests.swift": "e1c87114769c534b99dd995dae3bc932b98c99bacf8230ec806568f798d1de6c",
+    "Tests/QuotaCoreTests/QuotaMapperTests.swift": "4e7bc56f0e06726a70f33f8375849d64aad5ba5a549ba1d601512da143cab335",
+    "Tests/QuotaCoreTests/SnapshotStoreTests.swift": "1ae0c00e8a974cb1d94c1d070b70e170f8d15653d8bbb6f7f30b331443b6cb57",
+    "project.yml": "f161898744b319a5e8f08001d2d1bc6e09d6c3b1db57ca85abe02f5b1767f7d9"
+  }
+}
