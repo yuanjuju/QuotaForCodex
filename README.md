@@ -17,6 +17,24 @@
 
 > Quota for Codex 是独立第三方开源项目，不隶属于 OpenAI。
 
+## 工程设计
+
+**Native Runtime Integration · Actor-isolated RPC · Cross-Process State Synchronization**
+
+![本地运行时、异步通信与跨进程快照架构](docs/assets/runtime-architecture.svg)
+
+应用围绕 **本地运行时接入 → 额度语义归一化 → 跨进程快照 → 原生系统呈现** 组织工程边界。Swift Actor 管理 stdio 会话与请求生命周期，主应用将额度和用量投影为 App Group 原子快照，WidgetKit 消费该快照。
+
+| 技术域 | 工程实现 |
+| --- | --- |
+| **Async RPC Transport** | 请求 ID 关联、CheckedContinuation、通知事件流、超时与进程退出清理 |
+| **Snapshot Projection** | 整体额度桶选择、七日用量聚合、缺失日补零与部分失败回退 |
+| **Cross-Process State** | 单写入方的 Codable JSON 原子快照与 App Group 共享容器 |
+| **Runtime Lifecycle** | 轮询、事件驱动刷新、系统唤醒恢复与 stale 状态呈现 |
+| **Verification Harness** | Fake-server 协议测试、映射/存储验证与独立 smoke executable |
+
+[架构与并发边界](docs/architecture.md) · [协议与请求生命周期](docs/protocol.md) · [验证记录](docs/verification.md)
+
 ## 功能
 
 - 小号 Widget：显示 5 小时额度、周额度及重置时间。

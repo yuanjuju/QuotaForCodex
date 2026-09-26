@@ -6,6 +6,24 @@ Quota for Codex is a native macOS 14+ menu bar app and WidgetKit extension that 
 
 > This is an independent third-party open-source project and is not affiliated with OpenAI.
 
+## Engineering Overview
+
+**Native Runtime Integration · Actor-isolated RPC · Cross-Process State Synchronization**
+
+![Native runtime and snapshot architecture](docs/assets/runtime-architecture.svg)
+
+The application separates local runtime integration, snapshot projection, and native presentation. A Swift actor owns the stdio session and request lifecycle; the host app normalizes quota data into an atomic App Group snapshot consumed by WidgetKit.
+
+| Engineering area | Implementation |
+| --- | --- |
+| Async transport | Request IDs, checked continuations, notification streams, timeouts and process-exit cleanup |
+| Snapshot semantics | Overall quota selection, seven-day aggregation, zero filling and partial-failure fallback |
+| Cross-process state | Single-writer atomic Codable JSON shared through an App Group |
+| Host lifecycle | Polling, notification-triggered reads, wake refresh and stale-state presentation |
+| Verification | Isolated fake-server tests, mapping/storage checks and an account-independent smoke executable |
+
+[Architecture](docs/architecture.md) · [Protocol & lifecycle](docs/protocol.md) · [Verification record](docs/verification.md)
+
 ## Features
 
 - Small widget with five-hour and weekly quota windows.
