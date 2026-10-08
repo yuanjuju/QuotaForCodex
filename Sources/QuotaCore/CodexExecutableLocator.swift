@@ -23,28 +23,12 @@ public enum CodexExecutableLocator {
         environment: [String: String] = ProcessInfo.processInfo.environment,
         fileManager: FileManager = .default
     ) throws -> URL {
-        var candidates: [String] = []
-        if let customPath, !customPath.trimmingCharacters(in: .whitespaces).isEmpty {
-            candidates.append(customPath)
-        }
-
         let home = fileManager.homeDirectoryForCurrentUser.path
-        candidates.append(contentsOf: [
-            "/Applications/ChatGPT.app/Contents/Resources/codex",
-            "/Applications/Codex.app/Contents/Resources/codex",
-            "\(home)/Applications/ChatGPT.app/Contents/Resources/codex",
-            "\(home)/Applications/Codex.app/Contents/Resources/codex",
-            "/opt/homebrew/bin/codex",
-            "/usr/local/bin/codex"
-        ])
-
-        if let path = environment["PATH"] {
-            candidates.append(contentsOf: path.split(separator: ":").map {
-                URL(fileURLWithPath: String($0))
-                    .appendingPathComponent("codex")
-                    .path
-            })
-        }
+        let candidates = candidatePaths(
+            customPath: customPath,
+            home: home,
+            environment: environment
+        )
 
         var seen = Set<String>()
         for candidate in candidates where seen.insert(candidate).inserted {
@@ -64,6 +48,42 @@ public enum CodexExecutableLocator {
         }
 
         throw LocatorError.notInstalled
+    }
+
+    static func candidatePaths(
+        customPath: String?,
+        home: String,
+        environment: [String: String]
+    ) -> [String] {
+        var candidates: [String] = []
+        if let customPath, !customPath.trimmingCharacters(in: .whitespaces).isEmpty {
+            candidates.append(customPath)
+        }
+
+        let applicationRoots = ["/Applications", "\(home)/Applications"]
+        let applicationNames = ["ChatGPT.app", "Codex.app"]
+        for root in applicationRoots {
+            for applicationName in applicationNames {
+                let resources = "\(root)/\(applicationName)/Contents/Resources"
+                candidates.append("\(resources)/codex-cli/bin/codex")
+                candidates.append("\(resources)/codex-cli/CodexCLI.app/Contents/MacOS/codex")
+                candidates.append("\(resources)/codex")
+            }
+        }
+
+        candidates.append(contentsOf: [
+            "/opt/homebrew/bin/codex",
+            "/usr/local/bin/codex"
+        ])
+
+        if let path = environment["PATH"] {
+            candidates.append(contentsOf: path.split(separator: ":").map {
+                URL(fileURLWithPath: String($0))
+                    .appendingPathComponent("codex")
+                    .path
+            })
+        }
+        return candidates
     }
 
     public static func version(at executableURL: URL) throws -> String {

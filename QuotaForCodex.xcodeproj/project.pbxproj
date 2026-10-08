@@ -30,6 +30,7 @@
 		D3FEDFCAB0AB360427E4E252 /* CodexQuotaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FBF5ACBC33C7AAED4C399 /* CodexQuotaService.swift */; };
 		DD59A26AD91DE48C14974C2F /* QuotaMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756642141AF31A99FE3E929D /* QuotaMapper.swift */; };
 		E0930F775FDADAA9E1AF898E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCD2F1DDB49C47CC3AB48986 /* WidgetKit.framework */; };
+		E3F51F5FF648FD6ED789FC35 /* CodexExecutableLocatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7965DF322CDE1E9DAA6F41FB /* CodexExecutableLocatorTests.swift */; };
 		E4B61D7A12C46766A39A9930 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8099A7EFA1497E6BC39AE7A5 /* AppModel.swift */; };
 		E9E4420DF4BFB7D10C0CDD7F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0628672ABF8016EDF52AF21 /* Models.swift */; };
 		EADF5FD249EB1436A04FBCAE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BED6742CBF62E2318C3A18 /* SettingsView.swift */; };
@@ -117,6 +118,7 @@
 		5B25D0D11158A8D7EAC97DC5 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = System/Library/Frameworks/Charts.framework; sourceTree = SDKROOT; };
 		6D8A20D2B8EAC7E53BC35F9E /* SnapshotStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotStoreTests.swift; sourceTree = "<group>"; };
 		756642141AF31A99FE3E929D /* QuotaMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotaMapper.swift; sourceTree = "<group>"; };
+		7965DF322CDE1E9DAA6F41FB /* CodexExecutableLocatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodexExecutableLocatorTests.swift; sourceTree = "<group>"; };
 		8099A7EFA1497E6BC39AE7A5 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		839B4005F986457A5A874884 /* QuotaWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotaWidgetBundle.swift; sourceTree = "<group>"; };
 		A0628672ABF8016EDF52AF21 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				181AA67DBAEBCC03C49E869C /* CodexAppServerClientTests.swift */,
+				7965DF322CDE1E9DAA6F41FB /* CodexExecutableLocatorTests.swift */,
 				1A1F60F7A7BB6EF48F56D42B /* DailyUsageTests.swift */,
 				D1308E532D4D9A5800E2D2BD /* QuotaMapperTests.swift */,
 				6D8A20D2B8EAC7E53BC35F9E /* SnapshotStoreTests.swift */,
@@ -426,6 +429,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				032781C7B75AD59E33D99DA4 /* CodexAppServerClientTests.swift in Sources */,
+				E3F51F5FF648FD6ED789FC35 /* CodexExecutableLocatorTests.swift in Sources */,
 				F1456BEA5AC1D302949FB167 /* DailyUsageTests.swift in Sources */,
 				4AB9448F159B8D28AECA113B /* QuotaMapperTests.swift in Sources */,
 				647DE7F84E455B5C5847ACBA /* SnapshotStoreTests.swift in Sources */,
